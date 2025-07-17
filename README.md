@@ -102,6 +102,6 @@ This project is licensed under the MIT License.
 
 # 👤 Author
 
-Himanshu Yadav
-🌐 GitHub: Himanshu-738
+Himanshu Yadav<br>
+🌐 GitHub: Himanshu-738<br>
 📧 Email: himanshuyadav1961@gmail.com
