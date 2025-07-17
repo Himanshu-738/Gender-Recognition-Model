@@ -11,12 +11,26 @@ from PIL import Image
 import pickle 
 
 class genderRecognition:
-    def __init__(self, model_file):
+    def __init__(self, model_file , download_url=None):
+        if not os.path.exists(model_file):
+            if download_url is None:
+                raise ValueError("Model file not found and no download URL provided.")
+            print("Downloading model...")
+            self.download_model(download_url, model_file)
+            print("Model downloaded successfully.")
+
         with open(model_file, 'rb') as file:
             self.model = pickle.load(file)
 
         self.img_height = 128
         self.img_width = 128
+
+    def download_model(self, url, save_path):
+        response = requests.get(url, stream=True)
+        with open(save_path, 'wb') as f:
+            for chunk in response.iter_content(chunk_size=8192):
+                if chunk:
+                    f.write(chunk)
 
     def load_process_image(self, image_path):
         img = Image.open(image_path)
